@@ -1,0 +1,22 @@
+#!/usr/bin/env python 
+
+'''
+SSH by using server short name (that I can remember) is much better than by using long ass host name or IP address
+'''
+
+import subprocess
+import sys
+
+envs = {
+"server name (this is template, open the script up and modify)" : ("server description", ["arguments pass to ssh command"])
+}
+
+env = sys.argv[1]
+
+if env == 'ls':
+  for key in envs.keys():
+    print key + " - " + envs[key][0]
+elif env in envs:
+    subprocess.Popen(["ssh"] + envs[env][1]).communicate()
+else:
+    print "unknow env: " + env
